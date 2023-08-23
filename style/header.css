@@ -1,0 +1,21 @@
+.header{
+    padding: 40px 0;
+}
+
+.header__container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__link{
+    border-radius: 8px;
+    background-color: #A6ADFF;
+    font-size: 20px;
+    padding: 12px 32px;
+}
+.header__link:hover{
+    background: #2A18FF;
+    color: white;
+}
+
