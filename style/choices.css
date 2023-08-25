@@ -6,7 +6,7 @@
     position: inherit;
     width: 88%;
     background-color: #fff;
-    padding: 6px 16px;
+    padding: 8px 16px;
     min-height: 18.5px;
     border: 0;
 }
@@ -27,4 +27,10 @@
 .choices[data-type*=select-one].is-open::after {
     transform: rotate(180deg);
     margin-top: 0;
+}
+
+@media (max-width: 940px) {
+    .choices__inner{
+        width: 100%;
+    }
 }
