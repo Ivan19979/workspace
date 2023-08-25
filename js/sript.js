@@ -175,7 +175,10 @@ const init = () => {
     const filterForm = document.querySelector('.filter__form');
     // select city
     const citySelect = document.querySelector('#city');
-    const cityChoices = new Choices(citySelect, {itemSelectText: ''});
+    const cityChoices = new Choices(citySelect, {
+        itemSelectText: '',
+        position: 'bottom'
+    });
 
 
     getData(
