@@ -1,13 +1,21 @@
 .vacancy{
+    box-sizing: border-box;
     padding: 16px;
     border-radius: 16px;
-    background: #FFF;
-    max-height: 100%;
+    background-color: #FFF;
+    height: 100%;
     cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    border: 2px solid transparent;
+}
+
+.vacancy:focus-visible{
+    border-color:#A6ADFF;
 }
 
 .vacancy:hover{
-    transform: scale(1.01);
+    background-color: #F9FAFF;
 }
 
 .vacancy__img{

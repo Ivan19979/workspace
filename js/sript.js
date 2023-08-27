@@ -6,10 +6,13 @@ const cardsList = document.querySelector('.cards__list');
 let lastURL = "";
 const pagination = {};
 
-document.querySelector('.vacancies__filter-btn').addEventListener('click', (e) => {
-    e.target.classList.toggle('vacancies__filter-btn_active');
-    console.log(e.target.nextElementSibling.classList.toggle('vacancies__filter_active'));
-})
+const filterBtn = document.querySelector('.vacancies__filter-btn')
+filterBtn.addEventListener('click', (e) => {
+    filterBtn.classList.toggle('vacancies__filter-btn_active');
+    filterBtn.nextElementSibling.classList.toggle('vacancies__filter_active');
+});
+
+
 
 
 
@@ -150,6 +153,9 @@ const renderModal = data => {
             modal.remove();
         }
     })
+    window.addEventListener('keydown', ()=> {
+        modal.remove();
+    })
 
 }
 
@@ -193,22 +199,22 @@ const init = () => {
                 'label', 
                 false,
                 );
-        filterForm.addEventListener('reset', ()=>{
-            placeholderItem = cityChoices._getTemplate('placeholder', 'Выбрать город');
-            cityChoices.itemList.append(placeholderItem);
-            cityChoices.setChoices(
-                locations, 
-                'value', 
-                'label', 
-                false,
-                );
+            filterForm.addEventListener('reset', ()=>{
+                placeholderItem = cityChoices._getTemplate('placeholder', 'Выбрать город');
+                cityChoices.itemList.append(placeholderItem);
+                cityChoices.setChoices(
+                    locations, 
+                    'value', 
+                    'label', 
+                    false,
+                    );
             getData(urlWithParams, renderVacancies, renderError).then(() => {
                 lastURL = urlWithParams;
             })
         });
         },
         (err) => {
-            console.log(err)
+            console.warn(err)
         },
     );
 
@@ -233,6 +239,18 @@ const init = () => {
                 openModal(vacancyId);
             }
         })
+
+        cardsList.addEventListener('keydown', ({target, code}) => {
+            if(code === 'Enter' || code === 'NumpadEnter'){
+                const vacancyCard = target.closest('.vacancy');
+                if(vacancyCard){
+                    const vacancyId = vacancyCard.dataset.id;
+                    openModal(vacancyId);
+                    target.blur();
+                }
+        }
+
+        })
         
         //filter
 
@@ -244,9 +262,11 @@ const init = () => {
             formData.forEach((value, key) => {
                 urlWithParam.searchParams.append(key, value);
             });
-            console.log(urlWithParam);
             getData(urlWithParam, renderVacancies, renderError).then(() => {
                 lastURL = urlWithParam;
+            }).then(()=>{
+                filterBtn.classList.toggle('vacancies__filter-btn_active');
+                filterBtn.nextElementSibling.classList.toggle('vacancies__filter_active');
             });
         });
 };

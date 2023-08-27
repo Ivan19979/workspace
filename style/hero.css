@@ -67,6 +67,7 @@
 @media (max-width: 640px){
     .hero {
         padding-top: 20px;
+        padding-bottom: 11px;
 
     }
     .hero__container{
@@ -75,7 +76,7 @@
     }
 
     .hero__container::after{
-        top: auto;
+        top: 13%;
         height: 269px;
         right: auto;
         left: 50%;

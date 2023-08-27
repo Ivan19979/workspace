@@ -29,7 +29,6 @@
 
 .filter__legend{
     margin-bottom: 12px;
-
 }
 
 .filter__select{
@@ -66,13 +65,22 @@
 }
 
 .filter__button{
-    padding: 8px 24px;
+    padding: 6px 22px;
     border-radius: 4px;
     background: #A6ADFF;
+    border: 2px solid transparent;
+    outline: none;
+    transition-property: color, background-color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
 }
 .filter__button:hover{
     background: #2A18FF;
     color: white;
+}
+
+.filter__button:focus-visible{
+    border-color:#4F58BE;
 }
 
 @media (max-width: 940px) {
@@ -80,11 +88,20 @@
         position: fixed;
         transform: scale(0);
     }
+
+    .filter__form{
+        gap: 33px;
+    }
+
+    .filter__legend{
+        margin-bottom: 10px;
+    }
     .filter__input{
         max-width: 140px;
     }
     .filter__checkboxes{
         flex-direction: row;
+        gap: 32px;
         justify-content: space-between;
     }
     .filter__buttons{

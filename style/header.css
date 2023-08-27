@@ -5,7 +5,7 @@
 .header__container{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .header__link{
@@ -13,10 +13,16 @@
     background-color: #A6ADFF;
     font-size: 20px;
     padding: 12px 32px;
+    outline: none;
+    border: 2px solid transparent;
 }
 .header__link:hover{
     background: #2A18FF;
     color: white;
+}
+
+.header__link:focus-visible{
+    border-color: #4F58BE;
 }
 
 @media (max-width: 1140px) {
@@ -29,7 +35,7 @@
         padding: 24px 0 30px;
     }
     .header__link{
-        padding: 10px 16px;
+        padding: 8px 23px;
         font-size: 14px;
     }
 }
