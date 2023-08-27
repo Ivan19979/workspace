@@ -1,6 +1,8 @@
 const API_URL = "https://workspace-methed.vercel.app/";
 const LOCATION_URL = "api/locations";
 const VACANCY_URL = "api/vacancy";
+const BOT_TOKEN = "6676336744:AAHcz318MbIXtxSGBEhqyW9LljpUQFoPRVU";
+
 const cardsList = document.querySelector('.cards__list');
 
 let lastURL = "";
@@ -118,13 +120,37 @@ const createDetailVacancy = ({
                 <li class="detail__field">${experience}</li>
                 <li class="detail__field">${location}</li>
             </ul>
-        </div
-        <p class="detail__resume">Отправляйте резюме на 
-            <a class="blue-text" href="mailto:${email}">
-            ${email}</a>
-        </p>
+        </div>
+        ${isNaN(parseInt(id.slice(-1))) ? 
+        `   <p class="detail__resume">Отправляйте резюме на 
+                <a class="blue-text" href="mailto:${email}">${email}</a>
+            </p>
+        ` : `
+            <form class="detail__tg">
+                <input class="detail__input" type="text" name="message" placeholder="email для отклика" >
+                <input name="vacancyId" type="hidden" value="${title}" >
+                <button class="detail__btn">Отправить</button>
+            </form>
+        `
+    }
+        
     </article>
     `;
+
+const sendTelegram = (modal) => {
+    modal.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const form = e.target.closest('.detail__tg');
+        const userId = "703227360";
+        const text = `Отклик на вакансию ${form.vacancyId.value}, email: ${form.message.value}`;
+        const urlBot = 
+        `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${userId}&text=${text}`;
+        fetch(urlBot).then(() => modal.remove()).catch(err => {
+            alert('Ошибка');
+            console.log(err);
+        });
+    })
+}
 
 
 const renderModal = data => {
@@ -153,10 +179,14 @@ const renderModal = data => {
             modal.remove();
         }
     })
-    window.addEventListener('keydown', ()=> {
-        modal.remove();
+
+    window.addEventListener('keydown', ({code})=> {
+        if(code === "Tab"){
+            modal.remove();
+        }
     })
 
+    sendTelegram(modal);
 }
 
 const openModal = (id) => {

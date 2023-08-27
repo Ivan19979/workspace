@@ -113,3 +113,32 @@
     }
 }
 
+
+.detail__tg{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.detail__input{
+    width: 180px;
+    font-size: 14px;
+    height: 32px;
+    padding: 0 16px;
+    border-radius: 16px;
+    outline: none;
+    border: 2px solid #A6ADFF;
+}
+.detail__input:focus{
+    border: 2px solid #2A18FF;
+}
+
+.detail__btn{
+    border-radius: 16px;
+    background-color: #A6ADFF;
+    padding: 0px 16px;
+}
+.detail__btn:hover{
+    background: #2A18FF;
+    color: #fff;
+}
