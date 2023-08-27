@@ -3,6 +3,13 @@ const LOCATION_URL = "api/locations";
 const VACANCY_URL = "api/vacancy";
 const BOT_TOKEN = "6676336744:AAHcz318MbIXtxSGBEhqyW9LljpUQFoPRVU";
 
+window.addEventListener('load', () => {
+    setTimeout(()=>{
+        const preload = document.querySelector('#preload');
+        preload.remove();
+    }, 300);
+})
+
 const cardsList = document.querySelector('.cards__list');
 
 let lastURL = "";

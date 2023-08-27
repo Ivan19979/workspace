@@ -5,6 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/normalize.css">
     <link rel="stylesheet" href="index.css">
+    <style id="preload">
+        body::before{
+            content: '';
+            position: fixed;
+            z-index: 9998;
+            inset: 0;
+            background-color: rgba(255,255,255, 0.9);
+        }
+
+        body::after{
+            content: '';
+            position: fixed;
+            z-index: 9999;
+            inset: 0;
+            background-image: url('img/loader.svg');
+            background-position: center;
+            background-size: 20%;
+            background-repeat: no-repeat;
+            animation: rotate 1s infinite linear;
+        }
+
+        @keyframes rotate {
+            0%{
+                transform: rotate(0);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+    </style>
     <script src="js/choices.min.js" defer></script>
     <script src="js/sript.js" defer></script>
     <link rel="icon" href="img/icon.png">
